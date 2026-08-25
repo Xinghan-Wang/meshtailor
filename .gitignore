@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# Data (100k+ per-garment .pt files, obtained via tools/preprocess_seamless.py)
+processed_data*/
+GarmentCodeData/
+
+# Model weights (hosted on Hugging Face, see README)
+checkpoints/
+*.pt
+
+# Evaluation outputs
+test_outputs*/
+gt_outputs*/
+viz_compare*/
+vis_*/
+
+# Logs
+*.log
+*_err.txt
+*_log.txt

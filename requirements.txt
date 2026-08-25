@@ -1,0 +1,9 @@
+torch>=2.1
+torch-geometric>=2.4
+trimesh>=4.0
+numpy<2
+scipy
+scikit-learn
+PyYAML
+tqdm
+pymeshlab
