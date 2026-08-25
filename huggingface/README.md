@@ -35,6 +35,29 @@ ckpt = torch.load("best_paper100k.pt", weights_only=False)
 Recommended inference config: `temperature=0.1`, no penalties (p0 protocol),
 `--bf16` on modern GPUs.
 
+## External encoder
+
+MeshTailor uses the frozen point-cloud encoder from
+[NeuralCarver/Michelangelo](https://github.com/NeuralCarver/Michelangelo).
+Clone the upstream repository as `Michelangelo/` at the root of the companion
+MeshTailor repository, then download the two required weight directories:
+
+```bash
+git clone https://github.com/NeuralCarver/Michelangelo.git Michelangelo
+git -C Michelangelo checkout 6d83b0b
+hf download Maikou/Michelangelo \
+    checkpoints/aligned_shape_latents/shapevae-256.ckpt \
+    --local-dir Michelangelo
+hf download Maikou/Michelangelo \
+    --include "checkpoints/clip/clip-vit-large-patch14/*" \
+    --local-dir Michelangelo
+```
+
+Michelangelo is not included in this model repository. Its code remains under
+the upstream GPL-3.0 license, and its pretrained weights retain their upstream
+terms. See the companion repository README for the complete setup and data
+preprocessing instructions.
+
 ## License
 
 MIT (code); dataset rights belong to GarmentCodeDataset's authors.

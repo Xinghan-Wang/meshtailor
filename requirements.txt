@@ -7,3 +7,7 @@ scikit-learn
 PyYAML
 tqdm
 pymeshlab
+einops>=0.6
+omegaconf>=2.3
+pytorch-lightning>=1.9,<2
+transformers>=4.30,<5

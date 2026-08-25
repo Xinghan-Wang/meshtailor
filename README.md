@@ -20,19 +20,31 @@ recall **0.85** / precision **0.93**, chart count **0.88×** ground truth
 
 ## Quick start (inference only)
 
-Requirements: Python 3.10, a CUDA GPU, and the packages in
-[`requirements.txt`](requirements.txt).
+Requirements: Python 3.10, a CUDA GPU, the packages in
+[`requirements.txt`](requirements.txt), and the pretrained
+[Michelangelo](https://github.com/NeuralCarver/Michelangelo) point-cloud
+encoder.
 
 ```bash
 # 1. install
 conda create -n meshtailor python=3.10 -y && conda activate meshtailor
 pip install -r requirements.txt          # install a CUDA build of torch first
-
-# 2. download the checkpoint (~1.14 GB) from Hugging Face
 pip install -U "huggingface_hub[cli]"
+
+# 2. install the Michelangelo encoder at the repository root
+git clone https://github.com/NeuralCarver/Michelangelo.git Michelangelo
+git -C Michelangelo checkout 6d83b0b     # revision used for this reproduction
+hf download Maikou/Michelangelo \
+    checkpoints/aligned_shape_latents/shapevae-256.ckpt \
+    --local-dir Michelangelo
+hf download Maikou/Michelangelo \
+    --include "checkpoints/clip/clip-vit-large-patch14/*" \
+    --local-dir Michelangelo
+
+# 3. download the MeshTailor checkpoint (~1.14 GB) from Hugging Face
 hf download XingHan-WANG/meshtailor best_paper100k.pt --local-dir checkpoints
 
-# 3. generate seams for the test split
+# 4. generate seams for the test split
 python meshtailor/inference.py \
     --ckpt checkpoints/best_paper100k.pt \
     --split test --out_dir test_outputs --temperature 0.1 --bf16
@@ -42,6 +54,20 @@ Each garment produces `test_outputs/<gid>/mesh.obj` and `seam.json`
 (the generated seam chains). Note that inference requires the processed test
 data (`processed_data_seamless_maximal/`), which you can build with the
 preprocessing steps below.
+
+The expected external-encoder layout is:
+
+```text
+Michelangelo/
+  configs/aligned_shape_latents/shapevae-256.yaml
+  checkpoints/aligned_shape_latents/shapevae-256.ckpt
+  checkpoints/clip/clip-vit-large-patch14/
+```
+
+`Michelangelo/` must be a sibling of this repository's `meshtailor/` package;
+the model resolves that location automatically. Only its encoder is used and
+kept frozen. Michelangelo is not redistributed here and remains under its
+upstream GPL-3.0 license; its pretrained weights retain their upstream terms.
 
 ## Results
 
@@ -78,6 +104,7 @@ tools/             preprocessing, chain relabeling, eval summary, visualization
 tools/abf/         ABF++ unwrap C++ source (CMake, built against geogram)
 scripts/           one-shot PowerShell drivers: train / postcheck / eval
 huggingface/       model card used for the checkpoint upload
+Michelangelo/      external frozen point-cloud encoder (not committed here)
 ```
 
 ## Full reproduction
@@ -85,7 +112,8 @@ huggingface/       model card used for the checkpoint upload
 ### Extra requirements
 
 Everything was run on Windows 11 + WSL2 (Ubuntu), one RTX 5080 16 GB,
-PyTorch 2.13 + PyG 2.8. Two native tools live inside WSL:
+PyTorch 2.13 + PyG 2.8. Michelangelo must be installed as described in
+[Quick start](#quick-start-inference-only). Two native tools live inside WSL:
 
 | Tool | Role | Default location | Override |
 |---|---|---|---|

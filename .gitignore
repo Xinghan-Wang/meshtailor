@@ -4,6 +4,9 @@ __pycache__/
 *.egg-info/
 .venv/
 
+# External frozen point-cloud encoder (downloaded separately; see README)
+/Michelangelo/
+
 # Data (100k+ per-garment .pt files, obtained via tools/preprocess_seamless.py)
 processed_data*/
 GarmentCodeData/
