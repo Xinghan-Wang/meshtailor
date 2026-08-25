@@ -39,12 +39,11 @@ Download it from Hugging Face into `checkpoints/`:
 
 ```bash
 pip install -U "huggingface_hub[cli]"
-huggingface-cli download <YOUR_HF_USERNAME>/meshtailor-v13paper100k \
+hf download XingHan-WANG/meshtailor-v13paper100k \
     best_v13paper100k.pt --local-dir checkpoints
 ```
 
-(Replace `<YOUR_HF_USERNAME>` with the repository owner's Hugging Face user name;
-see `huggingface/README.md` for the model card used for that upload.)
+(`huggingface/README.md` is the model card used for that upload.)
 
 ## Setup
 
