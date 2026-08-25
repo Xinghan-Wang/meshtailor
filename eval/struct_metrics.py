@@ -74,7 +74,7 @@ def chains_to_seam_set(chains) -> set[tuple[int, int]]:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--test_out", default=str(ROOT / "test_outputs"))
-    ap.add_argument("--data_dir", default=str(ROOT / "processed_data_seamless_v13"))
+    ap.add_argument("--data_dir", default=str(ROOT / "processed_data_seamless_maximal"))
     args = ap.parse_args()
 
     test_out = Path(args.test_out)

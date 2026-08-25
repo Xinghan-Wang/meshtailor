@@ -1,9 +1,9 @@
-"""Export v13 comparison OBJs: mesh (gray) + three-color seam tubes.
+"""Export comparison OBJs: mesh (gray) + three-color seam tubes.
 
 Green = GT∩pred (hit), blue = GT only (missed), red = pred only (spurious).
-Same scheme as viz_compare_v12, pointing at the v13 10k outputs.
+Points at the full 10k test outputs.
 
-Output: viz_compare_v13/<gid>.obj + viz_compare_v13/compare.mtl
+Output: viz_compare/<gid>.obj + viz_compare/compare.mtl
 """
 from __future__ import annotations
 
@@ -13,9 +13,9 @@ from pathlib import Path
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
-GT_DIR = ROOT / "gt_outputs_v10fix_full"  # edge sets identical for v13 (relabel preserved edges)
-P0_DIR = ROOT / "test_outputs_v13paper100k_p0_full"
-OUT = ROOT / "viz_compare_v13"
+GT_DIR = ROOT / "gt_outputs_full"  # relabeling preserved the GT seam edge sets
+P0_DIR = ROOT / "test_outputs_full"
+OUT = ROOT / "viz_compare"
 GIDS = [
     "rand_001CMHYSGE",  # recall 1.000 (perfect)
     "rand_6X7YOMWIIJ",  # recall 0.900 (p90 band)
@@ -127,7 +127,7 @@ def main() -> None:
     for gid in GIDS:
         try:
             info = export(gid)
-            print(f"{gid}: GT {info['gt']} edges, v13 {info['p0']} edges, "
+            print(f"{gid}: GT {info['gt']} edges, predicted {info['p0']} edges, "
                   f"recall {info['recall']:.0%}, precision {info['prec']:.0%} "
                   f"-> {OUT / (gid + '.obj')}")
         except Exception as e:

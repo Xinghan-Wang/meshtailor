@@ -27,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from run_eval import unwrap_all, aggregate, PAPER  # noqa: E402
 
-DATA_DIR = ROOT / "processed_data_seamless_v13"
+DATA_DIR = ROOT / "processed_data_seamless_maximal"
 SPLIT_FILE = ROOT / "meshtailor" / "data" / "split_seamless_128k.json"
 
 # v3 penalty6 baseline (checkpoints/eval_v3_result.txt, test 250)

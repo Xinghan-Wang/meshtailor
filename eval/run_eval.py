@@ -124,10 +124,10 @@ def aggregate(out_dir, data_dir):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--ckpt", default=str(ROOT / "checkpoints" / "best_v10fix.pt"))
+    ap.add_argument("--ckpt", default=str(ROOT / "checkpoints" / "best_paper100k.pt"))
     ap.add_argument("--split", default="test")
     ap.add_argument("--out_dir", default=str(ROOT / "test_outputs"))
-    ap.add_argument("--data_dir", default=str(ROOT / "processed_data_seamless_v13"))
+    ap.add_argument("--data_dir", default=str(ROOT / "processed_data_seamless_maximal"))
     ap.add_argument("--split_file", default=str(ROOT / "meshtailor" / "data" / "split_seamless_128k.json"))
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--eos_penalty", type=float, default=0.0)

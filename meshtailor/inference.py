@@ -59,7 +59,7 @@ def chains_to_seam_edges(chains: list[list[int]]) -> list[list[int]]:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--ckpt", default=str(ROOT / "checkpoints" / "best_v13paper100k.pt"))
+    ap.add_argument("--ckpt", default=str(ROOT / "checkpoints" / "best_paper100k.pt"))
     ap.add_argument("--split", default="test")
     ap.add_argument("--out_dir", default=str(ROOT / "test_outputs"))
     ap.add_argument("--limit", type=int, default=0)
@@ -75,7 +75,7 @@ def main():
                     help="decode token budget; 0 uses checkpoint/model t_max")
     ap.add_argument("--seed", type=int, default=20260818)
     ap.add_argument("--bf16", action="store_true")
-    ap.add_argument("--data_dir", default=str(ROOT / "processed_data_seamless_v13"))
+    ap.add_argument("--data_dir", default=str(ROOT / "processed_data_seamless_maximal"))
     ap.add_argument("--split_file", default=str(Path(__file__).resolve().parent / "data" / "split_seamless_128k.json"))
     ap.add_argument("--skip_existing", action="store_true", help="skip garments already having seam.json in out_dir")
     args = ap.parse_args()

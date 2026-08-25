@@ -162,7 +162,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--legacy_ckpt", required=True)
     ap.add_argument("--paper_ckpt", required=True)
-    ap.add_argument("--data_dir", default=str(Path(__file__).resolve().parents[1] / "processed_data_seamless_v13"))
+    ap.add_argument("--data_dir", default=str(Path(__file__).resolve().parents[1] / "processed_data_seamless_maximal"))
     ap.add_argument("--split_file", default=str(Path(__file__).resolve().parents[1] / "meshtailor" / "data" / "split_seamless_128k.json"))
     ap.add_argument("--split", default="test")
     ap.add_argument("--limit", type=int, default=150)

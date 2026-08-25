@@ -12,7 +12,7 @@ sys.path.insert(0, str(ROOT / "eval"))
 from uv_metrics import metrics_for_obj
 from struct_metrics import chart_count
 
-DATA = ROOT / "processed_data_seamless_v13"
+DATA = ROOT / "processed_data_seamless_maximal"
 SPLIT = ROOT / "meshtailor" / "data" / "split_seamless_128k.json"
 OUT = ROOT / "tools" / "abf" / "_calib"
 WSL_BIN = "/root/abf_toolkit/tool/build/abf_unwrap"

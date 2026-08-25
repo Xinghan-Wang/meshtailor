@@ -65,7 +65,7 @@ def main():
     ap.add_argument("--patience", type=int, default=0,
                     help="early-stop after this many non-improving validation epochs (0=off)")
     ap.add_argument("--ckpt_dir", type=str, default=str(ROOT / "checkpoints"))
-    ap.add_argument("--data_dir", type=str, default=str(ROOT / "processed_data_seamless_v13"))
+    ap.add_argument("--data_dir", type=str, default=str(ROOT / "processed_data_seamless_maximal"))
     ap.add_argument("--split_file", type=str,
                     default=str(ROOT / "meshtailor" / "data" / "split_seamless_128k.json"))
     ap.add_argument("--resume", type=str, default="")

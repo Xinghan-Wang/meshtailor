@@ -1,4 +1,4 @@
-"""Summarize v10fix and GT metrics from the same 10k test outputs."""
+"""Summarize model and GT metrics from the same 10k test outputs."""
 from __future__ import annotations
 
 import argparse
@@ -123,11 +123,11 @@ def main() -> None:
         return a / b if b else float("nan")
 
     lines = []
-    lines.append("=== v10fix 10k full test (p0 + GT, same ABF++ pipeline) ===")
-    lines.append("checkpoint: best_v10fix.pt; protocol: temp=0.1, seed=20260818, no penalties")
+    lines.append("=== 10k full test (model + GT, ABF++ pipeline) ===")
+    lines.append("protocol: temp=0.1, seed=20260818, no penalties")
     lines.append(f"n: model={model['n']} gt={gt['n']} uv_model={model_area['n']} uv_gt={gt_area['n']}")
     lines.append("")
-    lines.append(f"{'metric':<20}{'v10fix':>12}{'GT':>12}{'v10fix/GT':>12}")
+    lines.append(f"{'metric':<20}{'model':>12}{'GT':>12}{'model/GT':>12}")
     for key in ["area_distortion", "compactness", "convexity", "seam_len/area", "jaggedness", "chart_count"]:
         lines.append(f"{key:<20}{model[key]:>12.4f}{gt[key]:>12.4f}{ratio(model[key], gt[key]):>12.4f}")
     lines.append("")
@@ -135,11 +135,11 @@ def main() -> None:
     lines.append(f"{'area(mean|r-1|)':<20}{model_area['mean_absr1']:>12.4f}{gt_area['mean_absr1']:>12.4f}{ratio(model_area['mean_absr1'], gt_area['mean_absr1']):>12.4f}")
     lines.append(f"{'area(rms_log)':<20}{model_area['rms_log']:>12.4f}{gt_area['rms_log']:>12.4f}{ratio(model_area['rms_log'], gt_area['rms_log']):>12.4f}")
     lines.append("")
-    lines.append(f"generated chains: v10fix={model_chain['chains']:.4f} GT={gt_chain['chains']:.4f}")
-    lines.append(f"generated edges : v10fix={model_chain['edges']:.4f} GT={gt_chain['edges']:.4f}")
+    lines.append(f"generated chains: model={model_chain['chains']:.4f} GT={gt_chain['chains']:.4f}")
+    lines.append(f"generated edges : model={model_chain['edges']:.4f} GT={gt_chain['edges']:.4f}")
     for key in ["macro_recall", "macro_precision", "micro_recall", "micro_precision"]:
         lines.append(f"{key}: {scores[key]:.6f}")
-    lines.append(f"mean unique edges: v10fix={scores['pred_edges']:.4f} GT={scores['gt_edges']:.4f}")
+    lines.append(f"mean unique edges: model={scores['pred_edges']:.4f} GT={scores['gt_edges']:.4f}")
 
     args.summary.parent.mkdir(parents=True, exist_ok=True)
     args.summary.write_text("\n".join(lines) + "\n", encoding="utf-8")

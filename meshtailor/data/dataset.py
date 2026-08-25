@@ -20,7 +20,7 @@ from torch.utils.data import DataLoader, Dataset
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 SPLIT_FILE = PROJECT_ROOT / "meshtailor" / "data" / "split_seamless_128k.json"
-DATA_DIR = PROJECT_ROOT / "processed_data_seamless_v13"
+DATA_DIR = PROJECT_ROOT / "processed_data_seamless_maximal"
 
 
 def _seed_worker(worker_id: int, base_seed: int) -> None:
