@@ -78,6 +78,7 @@ geogram-based ABF++ unwrap:
 |---|---|---|---|---|
 | area std-log ↓ | 0.6957 | 0.5551 | 1.25× | 1.00× |
 | area mean\|r−1\| ↓ | 0.8483 | 0.7972 | 1.06× | — |
+| Overall Dist (PartUV) ↓ | 1.589 | 1.653 | 0.96× | 1.00× |
 | compactness ↑ | 0.5232 | 0.5236 | 1.00× | 1.00× |
 | convexity ↑ | 0.8578 | 0.8426 | 1.02× | 1.00× |
 | seam length / area ↓ | 2.9798 | 3.2846 | 0.91× | 0.94× |
@@ -100,7 +101,8 @@ meshtailor/        model + training/inference entry points
   models/          pointer decoder, geometry & panel encoders, fusion
   data/            dataset loader, seam extraction, committed splits
 eval/              ABF++/Blender unwrap, UV & structural metrics, GT evaluation
-tools/             preprocessing, chain relabeling, eval summary, visualization
+tools/             preprocessing, chain relabeling, PartUV overall distortion,
+                   eval summary, visualization
 tools/abf/         ABF++ unwrap C++ source (CMake, built against geogram)
 scripts/           one-shot PowerShell drivers: train / postcheck / eval
 huggingface/       model card used for the checkpoint upload
