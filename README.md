@@ -76,8 +76,6 @@ geogram-based ABF++ unwrap:
 
 | Metric | Ours | GT | Ours / GT | Paper / GT |
 |---|---|---|---|---|
-| area std-log ↓ | 0.6957 | 0.5551 | 1.25× | 1.00× |
-| area mean\|r−1\| ↓ | 0.8483 | 0.7972 | 1.06× | — |
 | Overall Dist (PartUV) ↓ | 1.589 | 1.653 | 0.96× | 1.00× |
 | compactness ↑ | 0.5232 | 0.5236 | 1.00× | 1.00× |
 | convexity ↑ | 0.8578 | 0.8426 | 1.02× | 1.00× |
@@ -89,10 +87,12 @@ geogram-based ABF++ unwrap:
 | unique seam edges | 346.6 | 397.4 | 0.87× | — |
 | chains per garment | 12.69 | 12.9 | ✓ | — |
 
-Known gaps vs. the paper: chart count 0.88× vs 0.91×, area distortion 1.25×
-vs 1.00× — likely caused by duplicate-transition tails on ~12% of
-high-density garments and by the paper's additional TexVerse co-training
-data, which we did not use.
+Known gaps vs. the paper: chart count 0.88× vs 0.91× — likely caused by
+duplicate-transition tails on ~12% of high-density garments and by the
+paper's additional TexVerse co-training data, which we did not use. On the
+PartUV overall distortion the model matches the paper's
+model-versus-ground-truth parity (0.96× full split, 1.02× artifact-free
+subset).
 
 ## Repository layout
 

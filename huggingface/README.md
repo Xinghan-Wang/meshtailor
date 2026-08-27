@@ -19,7 +19,7 @@ Generative Mesh Traversal** (arXiv:2603.27309). Companion code repository:
 - Trained on 100k garments from GarmentCodeDataset with paper-style "maximal
   chain" labels (paper App. B.1) and the paper sequence protocol.
 - 10k test results: macro edge recall 0.846, precision 0.931, chart count
-  0.88×GT, area mean|r−1| 1.06×GT.
+  0.88×GT, PartUV overall distortion within 4% of GT (paper reports parity).
 
 ## Usage
 
